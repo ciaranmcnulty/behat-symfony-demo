@@ -7,6 +7,7 @@ use Cjm\Training\Enrolment\Model\Course;
 use Cjm\Training\Enrolment\Model\Courses;
 use Cjm\Training\Enrolment\Model\EnrolmentProblem as ModelEnrolmentProblem;
 use Cjm\Training\Enrolment\Model\Learner;
+use Cjm\Training\Enrolment\Services\CourseEnrolments;
 use Cjm\Training\Enrolment\Services\EnrolmentProblem;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -44,5 +45,12 @@ class CourseEnrolmentsSpec extends ObjectBehavior
         $course->isViable()->willReturn(true);
 
         $this->isCourseViable('behat for dummies')->shouldReturn(true);
+    }
+
+    function it_casts_and_rethrows_handles_enrolment_problems(Course $course)
+    {
+        $course->enrol(Argument::any())->willThrow(new ModelEnrolmentProblem());
+
+        $this->shouldThrow(EnrolmentProblem::class)->duringEnrol('Alice', 'behat for dummies');
     }
 }

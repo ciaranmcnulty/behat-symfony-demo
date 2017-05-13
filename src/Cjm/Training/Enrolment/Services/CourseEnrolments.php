@@ -32,7 +32,13 @@ class CourseEnrolments
     {
         $course = $this->courses->findByTitle($title);
 
-        $course->enrol(Learner::called($learnerName));
+        try {
+            $course->enrol(Learner::called($learnerName));
+        }
+        catch (ModelEnrolmentProblem $e)
+        {
+            throw new EnrolmentProblem('You cannot enrol this learner', 0, $e);
+        }
 
         $this->courses->persist($course);
     }
