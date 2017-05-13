@@ -6,6 +6,7 @@ class Course
 {
     private $title;
     private $classSize;
+    private $learners = 0;
 
     private function __construct(string $title, ClassSize $classSize)
     {
@@ -20,11 +21,11 @@ class Course
 
     public function enrol(Learner $learner)
     {
-        // TODO: write logic here
+        $this->learners++;
     }
 
     public function isViable()
     {
-        return false;
+        return $this->classSize->allows($this->learners);
     }
 }

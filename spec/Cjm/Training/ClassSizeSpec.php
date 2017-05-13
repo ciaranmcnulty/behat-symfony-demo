@@ -10,11 +10,16 @@ class ClassSizeSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedBetween(1,3);
+        $this->beConstructedBetween(2,3);
     }
 
-    function it_is_initializable()
+    function it_allows_valid_amounts()
     {
-        $this->shouldHaveType(ClassSize::class);
+        $this->allows(2)->shouldReturn(true);
+    }
+
+    function it_does_not_allows_sizes_below_the_range()
+    {
+        $this->allows(1)->shouldReturn(false);
     }
 }

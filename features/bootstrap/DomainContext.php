@@ -33,7 +33,8 @@ class DomainContext implements Context
     }
 
     /**
-     * @When only :learner enrols on this course
+     * @When (only) :learner enrols on this course
+     * @Given :learner has already enrolled on this course
      */
     public function learnerEnrolsOnCourse(Learner $learner)
     {
@@ -46,5 +47,13 @@ class DomainContext implements Context
     public function thisCourseWillNotBeViable()
     {
         assert($this->course->isViable() == false);
+    }
+
+    /**
+     * @Then this course will be viable
+     */
+    public function thisCourseWillBeViable()
+    {
+        assert($this->course->isViable() == true);
     }
 }

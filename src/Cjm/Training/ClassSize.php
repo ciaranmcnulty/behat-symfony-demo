@@ -17,4 +17,9 @@ class ClassSize
     {
         return new ClassSize($min, $max);
     }
+
+    public function allows(int $number)
+    {
+        return $number >= $this->min;
+    }
 }
