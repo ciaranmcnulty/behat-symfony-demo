@@ -32,6 +32,7 @@ class ServiceContext implements Context
 
     /**
      * @When (only) :learner enrols on this course
+     * @Given :learner has already enrolled on this course
      */
     public function learnerEnrolsOnThisCourse(string $learner)
     {
@@ -45,4 +46,13 @@ class ServiceContext implements Context
     {
         assert($this->courseEnrolments->isCourseViable($this->course) == false);
     }
+
+    /**
+     * @Then this course will be viable
+     */
+    public function thisCourseWillBeViable()
+    {
+        assert($this->courseEnrolments->isCourseViable($this->course) == true);
+    }
+
 }
