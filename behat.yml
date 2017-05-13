@@ -2,3 +2,10 @@ default:
   suites:
     domain:
       contexts: [DomainContext]
+    services:
+      contexts: [ServiceContext]
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        bootstrap: ~
+        class: App\Kernel
