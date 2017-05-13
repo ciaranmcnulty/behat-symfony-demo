@@ -1,9 +1,14 @@
 default:
   suites:
     domain:
-      contexts: [DomainContext]
+      contexts:
+        - DomainContext
+
     services:
-      contexts: [ServiceContext]
+      contexts:
+        - ServiceContext:
+            courseEnrolments: "@cjm.training.enrolment.course_enrolments"
+
   extensions:
     Behat\Symfony2Extension:
       kernel:

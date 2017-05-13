@@ -3,3 +3,7 @@
 parameters:
 
 services:
+  cjm.training.enrolment.course_enrolments:
+    class: Cjm\Training\Enrolment\Services\CourseEnrolments
+    arguments:
+      - "@cjm.training.enrolment.courses"

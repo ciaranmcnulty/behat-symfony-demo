@@ -1,0 +1,3 @@
+services:
+  cjm.training.enrolment.courses:
+    class: Cjm\Training\Enrolment\Infrastructure\Test\Courses
