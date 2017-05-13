@@ -4,9 +4,10 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
-use Cjm\Training\ClassSize;
-use Cjm\Training\Course;
-use Cjm\Training\Learner;
+use Cjm\Training\Enrolment\Model\ClassSize;
+use Cjm\Training\Enrolment\Model\Course;
+use Cjm\Training\Enrolment\Model\EnrolmentProblem;
+use Cjm\Training\Enrolment\Model\Learner;
 
 /**
  * Tests domain objects directly
@@ -91,6 +92,6 @@ class DomainContext implements Context
      */
     public function learnerShouldNotBeAbleToEnrol()
     {
-        assert($this->enrolmentProblem instanceof Cjm\Training\EnrolmentProblem);
+        assert($this->enrolmentProblem instanceof EnrolmentProblem);
     }
 }

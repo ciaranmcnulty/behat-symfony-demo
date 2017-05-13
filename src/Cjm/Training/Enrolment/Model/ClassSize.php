@@ -1,6 +1,6 @@
 <?php
 
-namespace Cjm\Training;
+namespace Cjm\Training\Enrolment\Model;
 
 class ClassSize
 {

@@ -1,9 +1,10 @@
 <?php
 
-namespace spec\Cjm\Training;
+namespace spec\Cjm\Training\Enrolment\Model;
 
-use Cjm\Training\ClassSize;
-use Cjm\Training\Learner;
+use Cjm\Training\Enrolment\Model\ClassSize;
+use Cjm\Training\Enrolment\Model\EnrolmentProblem;
+use Cjm\Training\Enrolment\Model\Learner;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -38,6 +39,6 @@ class CourseSpec extends ObjectBehavior
         $this->enrol(Learner::called('Bob'));
         $this->enrol(Learner::called('Charlie'));
 
-        $this->shouldThrow(\Cjm\Training\EnrolmentProblem::class)->duringEnrol(Learner::called('Derek'));
+        $this->shouldThrow(EnrolmentProblem::class)->duringEnrol(Learner::called('Derek'));
     }
 }

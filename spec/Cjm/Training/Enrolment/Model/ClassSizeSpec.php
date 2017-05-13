@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Cjm\Training;
+namespace spec\Cjm\Training\Enrolment\Model;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
