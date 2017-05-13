@@ -18,8 +18,13 @@ class ClassSize
         return new ClassSize($min, $max);
     }
 
-    public function allows(int $number)
+    public function isViable(int $size)
     {
-        return $number >= $this->min;
+        return $size >= $this->min;
+    }
+
+    public function hasMoreCapacity(int $size)
+    {
+        return $size < $this->max;
     }
 }

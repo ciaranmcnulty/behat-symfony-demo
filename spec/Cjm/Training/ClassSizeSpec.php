@@ -2,7 +2,6 @@
 
 namespace spec\Cjm\Training;
 
-use Cjm\Training\ClassSize;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -13,13 +12,23 @@ class ClassSizeSpec extends ObjectBehavior
         $this->beConstructedBetween(2,3);
     }
 
-    function it_allows_valid_amounts()
+    function it_shows_class_is_viable_above_minimum_size()
     {
-        $this->allows(2)->shouldReturn(true);
+        $this->shouldBeViable(2);
     }
 
-    function it_does_not_allows_sizes_below_the_range()
+    function it_shows_class_is_not_viable_below_minimum_size()
     {
-        $this->allows(1)->shouldReturn(false);
+        $this->shouldNotBeViable(1);
+    }
+
+    function it_shows_when_there_is_still_capacity()
+    {
+        $this->shouldHaveMoreCapacity(2);
+    }
+
+    function it_shows_when_capacity_is_reached()
+    {
+        $this->shouldNotHaveMoreCapacity(3);
     }
 }

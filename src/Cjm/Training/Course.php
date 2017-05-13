@@ -21,11 +21,15 @@ class Course
 
     public function enrol(Learner $learner)
     {
+        if (!$this->classSize->hasMoreCapacity($this->learners)) {
+            throw new EnrolmentProblem('Class is already at capacity');
+        }
+
         $this->learners++;
     }
 
     public function isViable()
     {
-        return $this->classSize->allows($this->learners);
+        return $this->classSize->isViable($this->learners);
     }
 }

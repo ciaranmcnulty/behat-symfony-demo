@@ -14,6 +14,7 @@ use Cjm\Training\Learner;
 class DomainContext implements Context
 {
     private $course;
+    private $enrolmentProblem;
 
     /** @Transform */
     public function transformLearner(string $name) : Learner
@@ -42,6 +43,34 @@ class DomainContext implements Context
     }
 
     /**
+     * @When :learner tries to enrol on this course
+     */
+    public function learnerTriesToEnrolOnCourse(Learner $learner)
+    {
+        try {
+            $this->course->enrol($learner);
+        }
+        catch (\Exception $e)
+        {
+            $this->enrolmentProblem = $e;
+        }
+    }
+
+    /**
+     * @Given :learner1, :learner2 and :learner3 have already enrolled on this course
+     */
+    public function learnersHaveAlreadyEnrolledOnThisCourse(
+        Learner $learner1,
+        Learner $learner2,
+        Learner $learner3
+    )
+    {
+        $this->course->enrol($learner1);
+        $this->course->enrol($learner2);
+        $this->course->enrol($learner3);
+    }
+
+    /**
      * @Then this course will not be viable
      */
     public function thisCourseWillNotBeViable()
@@ -55,5 +84,13 @@ class DomainContext implements Context
     public function thisCourseWillBeViable()
     {
         assert($this->course->isViable() == true);
+    }
+
+    /**
+     * @Then (s)he should not be able to enrol
+     */
+    public function learnerShouldNotBeAbleToEnrol()
+    {
+        assert($this->enrolmentProblem instanceof Cjm\Training\EnrolmentProblem);
     }
 }
