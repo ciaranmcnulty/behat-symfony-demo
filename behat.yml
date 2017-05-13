@@ -14,3 +14,8 @@ default:
       kernel:
         bootstrap: ~
         class: App\Kernel
+
+    Behat\MinkExtension:
+      sessions:
+        symfony:
+          symfony2: ~
