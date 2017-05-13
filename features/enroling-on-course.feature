@@ -10,7 +10,7 @@ Feature: Scheduling a training course
     - When maximum class size is reached, further enrolments are not allowed
 
   Background:
-    Given "BDD for Beginners" was proposed with a class size of 2-3 people
+    Given "BDD for Beginners" was proposed with a class size of 2 to 3 people
 
   Scenario: Course does not get enough enrolments to be viable
     When only Alice enrols on this course
