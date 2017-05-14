@@ -52,7 +52,7 @@ class EndToEndContext extends \Behat\MinkExtension\Context\RawMinkContext
     }
 
     /**
-     * @When only :learner enrols on this course
+     * @When (only) :learner enrols on this course
      */
     public function learnerEnrolsOnCourse(string $learner)
     {
@@ -61,6 +61,14 @@ class EndToEndContext extends \Behat\MinkExtension\Context\RawMinkContext
         $page = $this->getSession()->getPage();
         $page->fillField('Your name', $learner);
         $page->pressButton('Enrol');
+    }
+
+    /**
+     * @Given :learner has already enrolled on this course
+     */
+    public function learnerHasAlreadyEnrolledOnThisCourse(string $learner)
+    {
+        $this->courseEnrolments->enrol($learner, $this->course);
     }
 
     /**
@@ -74,27 +82,13 @@ class EndToEndContext extends \Behat\MinkExtension\Context\RawMinkContext
     }
 
     /**
-     * @Given Alice has already enrolled on this course
-     */
-    public function aliceHasAlreadyEnrolledOnThisCourse()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When Bob enrols on this course
-     */
-    public function bobEnrolsOnThisCourse()
-    {
-        throw new PendingException();
-    }
-
-    /**
      * @Then this course will be viable
      */
     public function thisCourseWillBeViable()
     {
-        throw new PendingException();
+        $this->visitPath('/courses/'.$this->course);
+
+        $this->assertSession()->elementNotExists('css', '#not-viable-warning');
     }
 
     /**

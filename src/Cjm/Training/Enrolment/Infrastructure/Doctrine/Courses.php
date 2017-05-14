@@ -29,6 +29,7 @@ class Courses implements \Cjm\Training\Enrolment\Model\Courses
 
     public function persist(Course $course): void
     {
-        // TODO: Implement persist() method.
+        $this->entityManager->persist($course);
+        $this->entityManager->flush();
     }
 }
