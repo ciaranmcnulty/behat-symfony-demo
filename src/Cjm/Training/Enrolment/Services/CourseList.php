@@ -23,6 +23,7 @@ class CourseList
         $view = new CourseView;
         $view->title = $course->getTitle();
         $view->viable = $course->isViable();
+        $view->canEnrol = $course->canAcceptEnrolments();
 
         return $view;
     }

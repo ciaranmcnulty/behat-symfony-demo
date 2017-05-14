@@ -21,7 +21,7 @@ class Course
 
     public function enrol(Learner $learner) : void
     {
-        if (!$this->classSize->hasMoreCapacity($this->learners)) {
+        if (!$this->canAcceptEnrolments()) {
             throw new EnrolmentProblem('Class is already at capacity');
         }
 
@@ -36,5 +36,10 @@ class Course
     public function getTitle() : string
     {
         return $this->title;
+    }
+
+    public function canAcceptEnrolments() : bool
+    {
+        return $this->classSize->hasMoreCapacity($this->learners);
     }
 }

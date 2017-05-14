@@ -13,8 +13,14 @@
 </div>
 {% endif %}
 
+<div id="enrolment">
+{% if course.canEnrol %}
 <form method="post">
     <input type="hidden" name="title" value="{{ course.title }}">
     <label>Your name: <input name="name" /></label>
     <button>Enrol</button>
 </form>
+{% else %}
+<p>Enrolment is closed for this course</p>
+{% endif %}
+</div>

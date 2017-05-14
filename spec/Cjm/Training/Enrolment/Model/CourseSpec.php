@@ -38,12 +38,18 @@ class CourseSpec extends ObjectBehavior
         $this->shouldBeViable();
     }
 
+    function it_will_allow_enrolments_if_maximum_size_is_not_reached()
+    {
+        $this->canAcceptEnrolments()->shouldReturn(true);
+    }
+
     function it_will_not_allow_enrolments_past_maximum_class_size()
     {
         $this->enrol(Learner::called('Alice'));
         $this->enrol(Learner::called('Bob'));
         $this->enrol(Learner::called('Charlie'));
 
+        $this->canAcceptEnrolments()->shouldReturn(false);
         $this->shouldThrow(EnrolmentProblem::class)->duringEnrol(Learner::called('Derek'));
     }
 }

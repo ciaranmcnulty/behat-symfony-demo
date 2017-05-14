@@ -6,4 +6,5 @@ class CourseView
 {
     public $title;
     public $viable;
+    public $canEnrol;
 }

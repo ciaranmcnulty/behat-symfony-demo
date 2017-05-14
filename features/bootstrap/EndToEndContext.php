@@ -14,6 +14,7 @@ class EndToEndContext extends \Behat\MinkExtension\Context\RawMinkContext
     private $courseEnrolments;
     private $entityManager;
     private $course;
+    private $enrolmentProblem;
 
     /**
      * UiContext constructor.
@@ -92,19 +93,31 @@ class EndToEndContext extends \Behat\MinkExtension\Context\RawMinkContext
     }
 
     /**
-     * @Given Alice, Bob and Charlie have already enrolled on this course
+     * @Given :learner1, :learner2 and :learner3 have already enrolled on this course
      */
-    public function aliceBobAndCharlieHaveAlreadyEnrolledOnThisCourse()
+    public function learnersHaveAlreadyEnrolledOnThisCourse($learner1, $learner2, $learner3)
     {
-        throw new PendingException();
+        $this->courseEnrolments->enrol($learner1, $this->course);
+        $this->courseEnrolments->enrol($learner2, $this->course);
+        $this->courseEnrolments->enrol($learner3, $this->course);
     }
 
     /**
-     * @When Derek tries to enrol on this course
+     * @When :learner tries to enrol on this course
      */
-    public function derekTriesToEnrolOnThisCourse()
+    public function learnerTriesToEnrolOnThisCourse(string $learner)
     {
-        throw new PendingException();
+        $this->visitPath('/courses/'.$this->course);
+
+        $page = $this->getSession()->getPage();
+
+        try {
+            $page->fillField('Your name', $learner);
+            $page->pressButton('Enrol');
+        }
+        catch (\Behat\Mink\Exception\Exception $e) {
+            $this->enrolmentProblem = $e;
+        }
     }
 
     /**
@@ -112,6 +125,7 @@ class EndToEndContext extends \Behat\MinkExtension\Context\RawMinkContext
      */
     public function heShouldNotBeAbleToEnrol()
     {
-        throw new PendingException();
+        assert($this->enrolmentProblem instanceof \Behat\Mink\Exception\Exception);
+        $this->assertSession()->elementTextContains('css', '#enrolment p', 'Enrolment is closed');
     }
 }
