@@ -1,9 +1,5 @@
 default:
   suites:
-    domain:
-      contexts:
-        - DomainContext
-
     services:
       contexts:
         - ServiceContext:
@@ -17,10 +13,11 @@ default:
 
 end-to-end:
   suites:
-    domain: false
     services: false
 
     ui:
+      filters:
+        tags: "@important"
       contexts:
         - EndToEndContext:
              courseEnrolments: "@cjm.training.enrolment.course_enrolments"

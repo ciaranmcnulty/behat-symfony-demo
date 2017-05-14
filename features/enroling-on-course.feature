@@ -16,6 +16,7 @@ Feature: Scheduling a training course
     When only Alice enrols on this course
     Then this course will not be viable
 
+  @important
   Scenario: Course gets enough enrolments to be viable
     Given Alice has already enrolled on this course
     When Bob enrols on this course
