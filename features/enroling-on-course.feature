@@ -1,3 +1,4 @@
+@javascript
 Feature: Scheduling a training course
 
   As a trainer

@@ -32,6 +32,16 @@ end-to-end:
         env: test_e2e
 
     Behat\MinkExtension:
+      base_url: http://127.0.0.1:8000/app_test.php
       sessions:
         symfony:
           symfony2: ~
+        chrome:
+          selenium2:
+            browser: chrome
+            wd_host: http://localhost:4444/wd/hub
+            capabilities:
+              chrome:
+                switches:
+                  - "--headless"
+                  - "--disable-gpu"
