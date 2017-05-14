@@ -2,16 +2,20 @@
 
 namespace Cjm\Training\Enrolment\Ui\Controller;
 
+use Cjm\Training\Enrolment\Services\CourseEnrolments;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class EnrolmentController
+class EnrolmentController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/courses/{course}")
      */
-    public function indexAction()
+    public function coursesAction(string $course)
     {
-        return new Response('hello world');
+        $course = $this->get('cjm.training.enrolment.course_list')->findByTitle($course);
+
+        return $this->render('courses.html.twig', ['course' => $course]);
     }
 }

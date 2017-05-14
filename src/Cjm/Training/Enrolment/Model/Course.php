@@ -14,12 +14,12 @@ class Course
         $this->classSize = $classSize;
     }
 
-    public static function propose(string $title, ClassSize $classSize)
+    public static function propose(string $title, ClassSize $classSize) : Course
     {
         return new Course($title, $classSize);
     }
 
-    public function enrol(Learner $learner)
+    public function enrol(Learner $learner) : void
     {
         if (!$this->classSize->hasMoreCapacity($this->learners)) {
             throw new EnrolmentProblem('Class is already at capacity');
@@ -28,8 +28,13 @@ class Course
         $this->learners++;
     }
 
-    public function isViable()
+    public function isViable() : bool
     {
         return $this->classSize->isViable($this->learners);
+    }
+
+    public function getTitle() : string
+    {
+        return $this->title;
     }
 }

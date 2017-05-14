@@ -1,0 +1,7 @@
+doctrine:
+    dbal:
+        url: '%env(DATABASE_URL)%'
+    orm:
+        #metadata_cache_driver: apc
+        #result_cache_driver: apc
+        #query_cache_driver: apc

@@ -6,7 +6,10 @@
     "symfony/framework-bundle": "^3.3",
     "symfony/yaml": "^3.3",
     "sensio/framework-extra-bundle": "^3.0",
-    "doctrine/annotations": "^1.4"
+    "doctrine/annotations": "^1.4",
+    "doctrine/doctrine-bundle": "^1.6",
+    "doctrine/orm": "^2.5",
+    "symfony/twig-bundle": "^3.2"
   },
   "require-dev" : {
     "behat/behat" : "^3.3",

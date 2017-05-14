@@ -15,7 +15,7 @@ class Courses implements \Cjm\Training\Enrolment\Model\Courses
         $this->courses[$title] = $course;
     }
 
-    public function findByTitle(string $title): Course
+    public function findByTitle(string $title): ?Course
     {
         return $this->courses[$title];
     }

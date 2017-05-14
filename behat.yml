@@ -15,6 +15,22 @@ default:
         bootstrap: ~
         class: App\Kernel
 
+end-to-end:
+  suites:
+    domain: false
+    services: false
+
+    ui:
+      contexts:
+        - EndToEndContext:
+             courseEnrolments: "@cjm.training.enrolment.course_enrolments"
+             entityManager: "@doctrine.orm.entity_manager"
+
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        env: test_e2e
+
     Behat\MinkExtension:
       sessions:
         symfony:

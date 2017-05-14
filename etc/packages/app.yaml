@@ -14,7 +14,7 @@ services:
     App\:
         resource: '../../src/{Command,Form,EventSubscriber,Twig,Security}'
 
-    App\Controller\:
-        resource: '../../src/Controller'
-        public: true
-        tags: ['controller.service_arguments']
+#    App\Controller\:
+#        resource: '../../src/Controller'
+#        public: true
+#        tags: ['controller.service_arguments']

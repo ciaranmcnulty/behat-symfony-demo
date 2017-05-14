@@ -15,6 +15,11 @@ class CourseSpec extends ObjectBehavior
         $this->beConstructedThroughPropose('Course title', ClassSize::between(2,3));
     }
 
+    function it_exposes_title()
+    {
+        $this->getTitle()->shouldReturn('Course title');
+    }
+
     function it_is_not_viable_to_start()
     {
         $this->shouldNotBeViable();

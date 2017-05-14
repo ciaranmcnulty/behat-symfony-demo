@@ -7,3 +7,14 @@ services:
     class: Cjm\Training\Enrolment\Services\CourseEnrolments
     arguments:
       - "@cjm.training.enrolment.courses"
+
+  cjm.training.enrolment.courses:
+    class: Cjm\Training\Enrolment\Infrastructure\Doctrine\Courses
+    arguments:
+      - "@doctrine.orm.entity_manager"
+
+  cjm.training.enrolment.course_list:
+    class: Cjm\Training\Enrolment\Services\CourseList
+    arguments:
+      - "@cjm.training.enrolment.courses"
+

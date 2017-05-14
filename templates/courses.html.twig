@@ -1,0 +1,20 @@
+<style>
+    #not-viable-warning {
+        border: solid red 2px;
+    }
+</style>
+
+
+<h1>{{ course.title }}</h1>
+
+{% if not course.viable %}
+<div id="not-viable-warning">
+    There are currently not enough enroled learners for this course
+</div>
+{% endif %}
+
+<form method="post">
+    <input type="hidden" name="title" value="{{ course.title }}">
+    <label>Your name: <input name="name" /></label>
+    <button>Enrol</button>
+</form>

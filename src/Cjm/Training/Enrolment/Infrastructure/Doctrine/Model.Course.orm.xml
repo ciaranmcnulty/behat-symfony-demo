@@ -1,0 +1,12 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="Cjm\Training\Enrolment\Model\Course" table="courses">
+        <id name="title" type="string" column="title" />
+        <field name="learners" type="integer" column="learners" />
+        <embedded name="classSize" class="Cjm\Training\Enrolment\Model\ClassSize"></embedded>
+    </entity>
+
+</doctrine-mapping>
